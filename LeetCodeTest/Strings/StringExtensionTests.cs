@@ -29,5 +29,18 @@ namespace LeetCodeTest.Strings
             var actual = input.LongestSubstringWithoutRepeatingChars();
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("babad",new string[] { "bab", "aba" })]
+        [InlineData("cbbc", new string[] { "cbbc" })]
+        [InlineData("cbbd", new string[] { "bb" })]
+        [InlineData("a", new string[] { "a" })]
+        [InlineData("abb", new string[] { "bb" })]
+        [InlineData("ac", new string[] { "a", "c" })]
+        public void LongestPalindromeSubstringTest(string input, string[] expected)
+        {
+            var actual = input.LongestPalindromeSubstring();
+            Assert.Contains(expected, ans => ans == actual);
+        }
     }
 }

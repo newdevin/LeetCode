@@ -36,7 +36,7 @@ namespace LeetCode.Strings
                         length--;
                         firstIndex++;
                     }
-                    
+
                     if (!set.Contains(s[j]))
                     {
                         set.Add(s[j]);
@@ -89,5 +89,68 @@ namespace LeetCode.Strings
             //return result;
             /**********old solutoin end*/
         }
+
+        public static string LongestPalindromeSubstring(this string s)
+        {
+            var longest = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                //odd 
+                var leftIndex = i;
+                var rightIndex = i;
+                while (leftIndex >= 0 && rightIndex < s.Length && s[leftIndex] == s[rightIndex])
+                {
+                    var count = rightIndex - leftIndex + 1;
+                    var str = s.Substring(leftIndex, count);
+                    if (longest.Length < str.Length)
+                    {
+                        longest = str;
+                    }
+                    leftIndex--;
+                    rightIndex++;
+                }
+
+                //even
+                leftIndex = i;
+                rightIndex = i + 1;
+                while (leftIndex >= 0 && rightIndex < s.Length && s[leftIndex] == s[rightIndex])
+                {
+                    var count = rightIndex - leftIndex + 1;
+                    var str = s.Substring(leftIndex, count);
+                    if (longest.Length < str.Length)
+                    {
+                        longest = str;
+                    }
+                    leftIndex--;
+                    rightIndex++;
+                }
+
+            }
+            return longest;
+
+            //for (int i = 0; i < s.Length; i++)
+            //{
+            //    for (int j = s.Length; j >= i + 1; j--)
+            //    {
+            //        var len = j - i;
+            //        if (len > longest.Length)
+            //        {
+            //            var sub = s[i..j];
+            //            {
+            //                var isPalindrome = IsPalindrome(sub);
+            //                if (sub.Length > longest.Length)
+            //                {
+            //                    if (isPalindrome)
+            //                    {
+            //                        longest = sub;
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            //return longest;
+        }
+
     }
 }
